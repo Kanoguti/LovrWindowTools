@@ -1,8 +1,8 @@
 # LovrWindowTools
 
-Lua言語用の3Dゲームフレームワークの「[LÖVR](https://lovr.org/)」で作成されたウィンドウを色々いじるためのライブラリです。
+Lua言語用の3Dゲームフレームワークの「<a href="https://lovr.org/" target="_blank">LÖVR</a>」で作成されたウィンドウを色々いじるためのライブラリです。
 <hr>
-This is a library for manipulating windows created with "[LÖVR](https://lovr.org/)", a 3D game framework for the Lua language.
+This is a library for manipulating windows created with "<a href="https://lovr.org/" target="_blank">LÖVR</a>", a 3D game framework for the Lua language.
 
 <hr>
 <hr>
