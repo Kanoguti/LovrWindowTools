@@ -19,7 +19,7 @@ If you have configured the "conf.lua" file so that the window does not open when
 LovrWindowTools=require("LovrWindowTools")
 
 function lovr.load()
-    LovrWindowTools.setFakeFullscreen(true)
+    LovrWindowTools.fakeFullscreen(true)
 end
 ```
 
