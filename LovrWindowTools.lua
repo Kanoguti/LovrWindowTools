@@ -66,11 +66,21 @@ ffi.cdef([[
     void glfwDestroyWindow(GLFWwindow* window);
 ]])
 
-local glfw=ffi.load("glfw3")
+local dll_name
+if(ffi.os=="Windows") then
+    dll_name="glfw3.dll"
+elseif(ffi.os=="OSX") then
+    dll_name="libglfw.3.dylib"
+elseif(ffi.os=="Linux") then
+    dll_name="libglfw.so.3"
+else
+    error("LovrWindowTools is not supported on this OS!")
+end
+local glfw=ffi.load(dll_name)
 
 local ffi_user32,user32
 local ffi_dwmapi,dwmapi
-if(lovr.system.getOS()=="Windows") then
+if(ffi.os=="Windows") then
     ffi_user32=require("ffi")
     ffi_user32.cdef([[
         enum {
@@ -421,7 +431,7 @@ function lib.title(p_text)
 end
 
 function lib.icon(p_GLFWimage)
-    if(lovr.system.getOS()~="macOS") then
+    if(ffi.os~="OSX") then
         local window=lib.getWindow()
         if(window~=nil) then
             local mt=getmetatable(lib)
@@ -484,7 +494,7 @@ function lib.fakeFullscreen(p_bool,p_monitor_id)
         local mt=getmetatable(lib)
         local temp_window=mt.target_window
         
-        if(lovr.system.getOS()=="Windows" and lovr.system.isWindowFullscreen()==false) then
+        if(ffi.os=="Windows" and lovr.system.isWindowFullscreen()==false) then
             if(p_bool==true) then
                 if(mt.fake_window==nil) then
                     lib.setWindow(nil)
